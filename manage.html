@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>e-Walentynka | Zarządzanie</title>
+</head>
+
+<body>
+    <div id="header" class="header">
+        <img class="logo" src="logo.png">
+        <img class="logo2" src="logo2.png" >
+    </div>
+    <textarea id="clipboard"></textarea>
+    <div class="content" id="content">
+        <center>
+            <table id="customers">
+                <tr>
+                  <th>Adresat</th>
+                  <th>Link do walentynki</th>
+                </tr>
+              </table>
+        </center>
+    </div>
+</body>
+
+</html>
+
+<script>
+var password = "";
+password = window.prompt('Wprowadź hasło dostępu');
+if (password == "walentynkikatolik2022") {
+    window.alert("Hasło prawidłowe, ładowanie panelu zarządzania");
+    loadCards();
+} else {
+    window.alert("Hasło nieprawidłowe!");
+    window.open("https://walentynkikatolik.github.io/","_self");
+}
+
+function loadCards() {
+    let req = new XMLHttpRequest();
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        //console.log(req.responseText);
+        jsondata = req.responseText
+        createTable(jsondata);
+    }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/v3/b/61f188b9bd6e744997ec42f6/latest", true);
+    req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
+    req.setRequestHeader("X-Bin-Meta", "false");
+    req.send();
+
+}
+
+function createTable(jsondata) {
+    jsondata = jsondata.split('"');
+    console.log(jsondata);
+    cardsnumber = jsondata.length - 5
+    cardsnumber = cardsnumber / 4
+    console.log(cardsnumber);
+    counter = 3;
+    tabelka = "";
+    while (cardsnumber > 0) {
+        data = jsondata[counter];
+        data = data.split(';');
+        tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+        counter = counter + 4;
+        cardsnumber = cardsnumber - 1;
+    }
+    console.log(tabelka);
+    document.getElementById("content").innerHTML = '<center> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
+    return false;
+}
+
+function buttonClick(id) {
+    document.getElementById("card"+id).className = "link-button-2";
+    document.getElementById("card"+id).innerHTML = "Skopiowano!";
+    document.getElementById("clipboard").value = "📨 Ktoś wysłał do Ciebie Walentynkę! 📨\nWejdź tutaj, aby ją odczytać! ❤️\n➡️ https://walentynkikatolik.github.io/open?id="+id+"\n\nPozdrawiamy\nSamorząd Uczniowski"
+    var copyText = document.getElementById("clipboard");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    return false;
+}
+</script>
