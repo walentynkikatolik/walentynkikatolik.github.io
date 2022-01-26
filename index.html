@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/2448/premium/2448648.png?token=exp=1643206974~hmac=84cb176d488344e180f5f12422dd9e80">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>e-Walentynka | Wyślij walentynkę</title>
+</head>
+
+<body>
+    <div id="header" class="header">
+        <img class="logo" src="logo.png">
+        <img class="logo2" src="logo2.png" >
+    </div>
+    <div class="content">
+        <center><h1>Zaprojektuj walentynkę</h1>
+        <div class="heart-creator">
+            <div style="display: inline-block;">
+                <div class="heart">
+                    <div class="heart-content">
+                        <h2 id="heart-title" class="heart-title">Dla Ciebie</h2>
+                        <h2 id="heart-text" class="heart-text">Niech ten wiersz Ci przypomni, </br>Że jest ktoś, kto o Tobie nie zapomni.</h2>
+                    </div>
+                </div>
+            </div>
+            <div style="display: inline-block;">
+                <div class="heart-options">
+                    <input type="text" id="heart-title-input" name="heart-title-input" class="options-input" value="Dla Ciebie" onChange="heartTitleEdit()" maxlength="45" placeholder="Tytuł"></input>
+                    </br></br>
+                    <textarea id="heart-text-input" name="heart-text-input" class="options-textarea" onChange="heartTextEdit()" rows="6" maxrows="6" placeholder="Treść" maxlength="200">Tu wpisz tekst</textarea>
+                </div>
+            </div>
+        </div>
+        </center>
+    </div>
+
+</body>
+
+
+
+</html>
+
+<script>
+    document.getElementById("heart-text-input").value = "Niech ten wiersz Ci przypomni, \nŻe jest ktoś, kto o Tobie nie zapomni."
+function heartTitleEdit() {
+    document.getElementById("heart-title").innerHTML = document.getElementById("heart-title-input").value;
+    return false;
+}
+function heartTextEdit() {
+    heartText = document.getElementById("heart-text-input").value;
+    heartText = heartText.replaceAll('\n', '</br>');
+    document.getElementById("heart-text").innerHTML = heartText;
+    return false;
+}
+
+
+
+
+</script>

@@ -1,0 +1,108 @@
+::-webkit-scrollbar{
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-thumb{
+    background: #B3AFB3;
+    border-radius: 30px;
+}
+    ::-webkit-scrollbar-thumb:hover{
+    background: #B3AFB3;
+}
+::-webkit-scrollbar-track{
+    background: #F0F0F0;
+    border-radius: 30px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
+body {
+    margin: 0;
+    background-color: #f6ecea;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.header {
+    display: block;
+    position: fixed;
+    background-color: #e8b7a6;
+    width: 100%;
+    padding: 20px;
+    height: 80px;
+    -webkit-box-shadow:0px -23px 50px 30px #737373 ;
+    -moz-box-shadow:0px -23px 50px 30px #737373 ;
+    box-shadow:0px -23px 50px 30px #737373 ;
+}
+.logo {
+    height: 80px;
+    left: 0;
+    position: inherit;
+    margin-left: 20px;
+}
+.logo2 {
+    height: 80px;
+    right: 0;
+    position: inherit;
+    margin-right: 20px;
+}
+.content {
+    padding-top: 150px;
+}
+h1 {
+    font-weight: normal;
+    font-size: 40px;
+}
+
+/* KREATOR SERDUSZKA */
+.heart {
+    width: 570px;
+    height: 500px;
+    background-image: url("heart.png");
+    display: inline-block;
+    position: static;
+    display: table-cell;
+}
+.heart-options {
+    display: table-cell;
+    position: static;
+    width: 570px;
+    height: 500px;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.heart-content {
+    padding-top: 110px;
+}
+h2.heart-title {
+    margin: 0;
+    font-weight: normal;
+    font-family: 'Comforter', cursive;
+    width: 100%;
+    font-size: 40px;
+}
+h2.heart-text {
+    margin: 0;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 100%;
+    font-size: 20px;
+}
+.options-input {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height: 30px;
+    outline: none;
+    border:1px solid #8f8f8f;
+    width: 80%;
+    padding: 5px;
+}
+.options-textarea {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    outline: none;
+    border:1px solid #8f8f8f;
+    width: 80%;
+    resize: none;
+    padding: 5px;
+}
