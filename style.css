@@ -49,6 +49,9 @@ h1 {
     font-weight: normal;
     font-size: 40px;
 }
+p {
+    margin: 0;
+}
 
 /* KREATOR SERDUSZKA */
 .heart {
@@ -58,6 +61,7 @@ h1 {
     display: inline-block;
     position: static;
     display: table-cell;
+    background-repeat: no-repeat
 }
 .heart-options {
     display: table-cell;
@@ -111,14 +115,59 @@ h2.heart-text {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 15px;
 }
-.options-next {
+.options-range {
+    margin-bottom: 10px;
+}
+
+/* ADRESOWANIE WALENTYNKI */
+.sending-input {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height: 30px;
+    outline: none;
+    border:1px solid #8f8f8f;
+    width: 400px;
+    padding: 5px;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+}
+.sending-input2 {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height: 30px;
+    outline: none;
+    border:1px solid #8f8f8f;
+    width: 50px;
+    padding: 5px;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+}
+.sending-input3 {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height: 30px;
+    outline: none;
+    border:1px solid #8f8f8f;
+    width: 466px;
+    padding: 5px;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15px;
+    margin-top: 5px;
+}
+.sending-submit {
     border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     background-color: #e8b7a6;
     outline: none;
     border:1px solid #e8b7a6;
-    width: 20%;
+    width: 200px;
     resize: none;
     padding: 5px;
     height: 40px;
@@ -126,7 +175,5 @@ h2.heart-text {
     font-weight: normal;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
-}
-.options-range {
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
