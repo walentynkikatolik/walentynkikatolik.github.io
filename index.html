@@ -53,6 +53,7 @@
             <center>
                 <h3>Twoja walentynka została zapisana!</h3>
                 <h4>Kartki będą rozsyłane w dniach 11-13.02.2022</h4>
+                <button class="sending-submit" onClick="return showCard();">Podgląd walentynki</button>
                 </br></br>
                 <h4>Dziękujemy za udział w akcji! ❤️</h4>
                 <div class="signature"></div>
@@ -68,6 +69,7 @@
 
 <script>
 var jsondata = "";
+var cardcode = "";
 rangeChange();
 function heartTitleEdit() {
     document.getElementById("heart-title").innerHTML = document.getElementById("heart-title-input").value;
@@ -100,6 +102,9 @@ function sendCard() {
     receiver = document.getElementById("receiver").value
     receiverclass = document.getElementById("receiver-class").value
     sender = document.getElementById("sender").value
+    if (sender == "") {
+        sender = "Tajemniczy wielbiciel/wielbicielka 👤";
+    }
     carddata = title+";"+text+";"+titlesize+";"+textsize+";"+receiver+";"+receiverclass+";"+sender;
 
     document.getElementById("content").innerHTML = "</br></br><center><img src='loading.svg'></img><h1>Tworzenie walentynki...</h1></center>";
@@ -151,6 +156,11 @@ function success() {
     document.getElementById("content").style.display = "none";
     document.getElementById("success-page").style.display = "inherit";
     document.getElementById("success-page").style.paddingTop = "150px";
+    return false;
+}
+
+function showCard() {
+    window.open("https://walentynkikatolik.github.io/open?id="+cardcode)
     return false;
 }
 

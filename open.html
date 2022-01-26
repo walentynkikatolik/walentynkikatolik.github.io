@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons.flaticon.com/png/512/2448/premium/2448648.png?token=exp=1643206974~hmac=84cb176d488344e180f5f12422dd9e80">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>e-Walentynka</title>
+</head>
+
+<body>
+    <div id="header" class="header">
+        <img class="logo" src="logo.png">
+        <img class="logo2" src="logo2.png" >
+    </div>
+    <div class="content" id="content">
+        <center>
+            <div class="heart-creator">
+                <div style="display: inline-block;">
+                    <div class="heart">
+                        <div class="heart-content">
+                            <h2 id="heart-title" class="heart-title">Tu wpisz tytuł</h2>
+                            <h2 id="heart-text" class="heart-text">Tu wpisz tekst</h2>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: inline-block;">
+                    <div class="heart-options">
+                        <h4 id="author">
+                            Hej, hej! Ktoś wysłał do Ciebie Walentynkę! ❤️
+                            </br>
+                            Nadawca: Anonim
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            </br></br></br></br>
+            <h4>Organizator:
+            <div class="signature"></div></h4>
+        </center>
+    </div>
+    <div class="loading-page" id="loading-page">
+        <div>
+            <center>
+            </br></br></br></br></br></br></br></br></br></br><img src='loading.svg'></img>
+            </center>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    document.getElementById("content").style.display = "none";
+    const urlParams = new URLSearchParams(window.location.search);
+    var cardcode = urlParams.get('id')
+    
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        //console.log(req.responseText);
+        jsondata = req.responseText
+        return makeCard(jsondata);
+    }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/v3/b/61f188b9bd6e744997ec42f6/latest", true);
+    req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
+    req.setRequestHeader("X-Bin-Meta", "false");
+    req.send();
+
+function makeCard() {
+    jsondata = JSON.parse(jsondata);
+    jsondata = jsondata[cardcode];
+    jsondata = jsondata.split(';');
+    console.log(jsondata);
+
+    document.getElementById("loading-page").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    document.getElementById("heart-title").innerHTML = jsondata[1];
+    document.getElementById("heart-text").innerHTML = jsondata[2];
+    document.getElementById("heart-title").style.fontSize = jsondata[3];
+    document.getElementById("heart-text").style.fontSize = jsondata[4];
+    document.getElementById("heart-title").style.fontSize = jsondata[3];
+    document.getElementById("author").innerHTML = "Hej, hej! Ktoś wysłał do Ciebie Walentynkę! ❤️ </br> Nadawca: "+jsondata[7];
+    return false;
+}
+</script>

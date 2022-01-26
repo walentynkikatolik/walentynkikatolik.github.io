@@ -90,6 +90,7 @@ h4 {
     height: 500px;
     padding: 0;
     margin: 0;
+    vertical-align: middle;
 }
 .heart-content {
     padding-top: 110px;
