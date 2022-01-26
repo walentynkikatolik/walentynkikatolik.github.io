@@ -1,3 +1,7 @@
+.success-page {
+    display: none;
+}
+
 ::-webkit-scrollbar{
     width: 7px;
     height: 7px;
@@ -52,6 +56,22 @@ h1 {
 p {
     margin: 0;
 }
+h3 {
+    font-weight: normal;
+    font-size: 60px;
+    margin-bottom: 0;
+}
+h4 {
+    font-weight: normal;
+    font-size: 25px;
+    margin-top: 0;
+}
+.signature {
+    width: 300px;
+    height: 79px;
+    background-repeat: no-repeat;
+    background-image: url("signature.png");
+}
 
 /* KREATOR SERDUSZKA */
 .heart {
@@ -61,7 +81,7 @@ p {
     display: inline-block;
     position: static;
     display: table-cell;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 .heart-options {
     display: table-cell;
@@ -70,7 +90,6 @@ p {
     height: 500px;
     padding: 0;
     margin: 0;
-    vertical-align: middle; 
 }
 .heart-content {
     padding-top: 110px;
