@@ -14,11 +14,6 @@
         <img class="logo" src="logo.png">
         <img class="logo2" src="logo2.png" >
     </div>
-    <center>
-        <div id="animated-text" class="animated-text-hidden">
-            test
-        </div>
-    </center>
     <div class="content" id="content">
         <center>
             <div class="heart-creator">
@@ -76,38 +71,19 @@
     req.setRequestHeader("X-Bin-Meta", "false");
     req.send();
 
-
-function showText() {
-    imie = jsondata[5].split(" ");
-    imie = imie[0];
-    document.getElementById("animated-text").className = "animated-text";
-    document.getElementById("animated-text").innerHTML = "Hej "+imie+" 👋";
-    const myTimeout = setTimeout(showText2, 5000);
-}
-
-function showText2() {
-    document.getElementById("animated-text").innerHTML = jsondata[7]+" chce Ci coś przekazać...";
-    const myTimeout = setTimeout(showCard, 5000);
-}
-
-function showCard() {
-    document.getElementById("animated-text").className = "animated-text-hidden";
-    document.getElementById("content").style.display = "block";
-}
-
 function makeCard() {
     jsondata = JSON.parse(jsondata);
     jsondata = jsondata[cardcode];
     jsondata = jsondata.split(';');
     console.log(jsondata);
+
     document.getElementById("loading-page").style.display = "none";
+    document.getElementById("content").style.display = "block";
     document.getElementById("heart-title").innerHTML = jsondata[1];
     document.getElementById("heart-text").innerHTML = jsondata[2];
     document.getElementById("heart-title").style.fontSize = jsondata[3];
     document.getElementById("heart-text").style.fontSize = jsondata[4];
     document.getElementById("author").innerHTML = "Hej, hej! Ktoś wysłał do Ciebie Walentynkę! ❤️ </br> Nadawca: "+jsondata[7];
-    //document.getElementById("content").style.display = "block";
-    showText();
     return false;
 }
 </script>

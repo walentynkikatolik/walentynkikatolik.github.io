@@ -279,3 +279,23 @@ h2.heart-text {
     font-size: 18px;
     margin-top: 5px;
 }
+
+/* OTWIERANIE WALENTYNKI - ANIMACJA */
+@keyframes open-card {
+    0%   {opacity: 0}
+    25%  {opacity: 1}
+    75% {opacity: 1}
+    100% {opacity: 0}
+  }
+.animated-text {
+    padding-top: 250px;
+    animation-name: open-card;
+    animation-duration: 5s;
+    animation-iteration-count: 2;
+    font-size: 50px;
+    opacity: 0;
+}
+.animated-text-hidden {
+    padding-top: 250px;
+    display: none;
+}
