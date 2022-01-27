@@ -157,14 +157,14 @@ h2.heart-text {
     border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
-    height: 30px;
+    height: 42px;
     outline: none;
     border:1px solid #8f8f8f;
-    width: 50px;
+    width: 61px;
     padding: 5px;
     font-weight: normal;
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
 }
 .sending-input3 {
     border-radius:10px;

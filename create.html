@@ -28,13 +28,20 @@
             </div>
             <div style="display: inline-block;">
                 <div class="heart-options">
-                    <input type="text" id="heart-title-input" name="heart-title-input" class="options-input" onChange="heartTitleEdit()" maxlength="45" placeholder="Tytuł"></input>
+                    <input type="text" id="heart-title-input" name="heart-title-input" class="options-input" onChange="heartTitleEdit()" maxlength="45" placeholder="Tytuł" autocomplete="off"></input>
                     <input type="range" id="title-range" class="options-range" onchange="return rangeChange();">
                     <textarea id="heart-text-input" name="heart-text-input" class="options-textarea" onChange="heartTextEdit()" rows="6" maxrows="6" placeholder="Treść" maxlength="200"></textarea>
                     <input type="range" id="text-range" class="options-range" onchange="return rangeChange();">
                     <form onSubmit="return sendCard();">
-                        <input type="text" id="receiver" name="receiver" class="sending-input" placeholder="Imię i nazwisko odbiorcy" required></input>
-                        <input type="text" id="receiver-class" name="receiver-class" class="sending-input2" placeholder="Klasa" required></input>
+                        <input type="text" id="receiver" name="receiver" class="sending-input" placeholder="Imię i nazwisko odbiorcy" autocomplete="off" required></input>
+                        <select id="receiver-class" name="receiver-class" class="sending-input2" required>
+                            <option value="Klasa" selected hidden>Klasa</option>
+                            <option value="7 SP">7 SP</option>
+                            <option value="8 SP">8 SP</option>
+                            <option value="I LO">I LO</option>
+                            <option value="II LO">II LO</option>
+                            <option value="III LO">III LO</option>
+                        </select>
                         </br>
                         <input type="text" id="sender" name="sender" class="sending-input3" placeholder="Twoje imię (możesz zostawić to pole puste)"></input>
                         </br>
