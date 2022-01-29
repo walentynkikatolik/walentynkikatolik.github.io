@@ -17,12 +17,17 @@
     <textarea id="clipboard"></textarea>
     <div class="content" id="content">
         <center>
-            <table id="customers">
-                <tr>
-                  <th>Adresat</th>
-                  <th>Link do walentynki</th>
-                </tr>
-              </table>
+            <div style="width: 500px;">
+                <h1>Logowanie do Panelu Zarządzania</h1>
+                <form onsubmit="return loginForm()" id="loginform" name="loginform">
+                    <input type="text" id="login" name="login" class="options-input" placeholder="Login" autocomplete="off" required autofocus>
+                    </br></br>
+                    <input type="password" id="password" name="password" class="options-input" placeholder="Hasło" autocomplete="off" required>
+                    </br></br>
+                    <input type="submit" class="sending-submit" value="Zaloguj">
+                </form>
+                <h4 id="login-info"> </h4>
+            </div>
         </center>
     </div>
 </body>
@@ -30,14 +35,35 @@
 </html>
 
 <script>
-var password = "";
-password = window.prompt('Wprowadź hasło dostępu');
-if (password == "walentynkikatolik2022") {
-    window.alert("Hasło prawidłowe, ładowanie panelu zarządzania");
-    loadCards();
-} else {
-    window.alert("Hasło nieprawidłowe!");
-    window.open("https://walentynkikatolik.github.io/","_self");
+function loginForm() {
+    document.getElementById("login-info").innerHTML = "</br>Proszę czekać, trwa logowanie..."
+    login = document.getElementById("login").value;
+    password = document.getElementById("password").value;
+    if (login == "b.niedzwiecki" && password == "katolik2022") {
+        username = "Bartosz Niedźwiecki"
+        binid = "61f58da71960493ad184b0f6";
+        loadCards();
+    } else if (login == "k.paszkiewicz" && password == "katolik2022") {
+        username = "Kornelia Paszkiewicz"
+        binid = "61f58dc3fb3ece3ad7ce047a";
+        loadCards();
+    } else if (login == "j.salek" && password == "katolik2022") {
+        username = "Jakub Sałek"
+        binid = "61f58dd3fb3ece3ad7ce0481";
+        loadCards();
+    } else if (login == "a.klajda" && password == "katolik2022") {
+        username = "Aleksandra Klajda"
+        binid = "61f58de6518e5f3b2ab2929e";
+        loadCards();
+    } else if (login == "z.reda" && password == "katolik2022") {
+        username = "Zuzanna Reda"
+        binid = "61f58df6518e5f3b2ab292aa";
+        loadCards();
+    } else {
+        window.alert("Hasło nieprawidłowe!");
+        window.open("https://walentynkikatolik.github.io/","_self");
+    }
+    return false;
 }
 
 function loadCards() {
@@ -50,7 +76,7 @@ function loadCards() {
     }
     };
 
-    req.open("GET", "https://api.jsonbin.io/v3/b/61f188b9bd6e744997ec42f6/latest", true);
+    req.open("GET", "https://api.jsonbin.io/v3/b/"+binid+"/latest", true);
     req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
     req.setRequestHeader("X-Bin-Meta", "false");
     req.send();
@@ -68,12 +94,12 @@ function createTable(jsondata) {
     while (cardsnumber > 0) {
         data = jsondata[counter];
         data = data.split(';');
-        tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+        tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
         counter = counter + 4;
         cardsnumber = cardsnumber - 1;
     }
     console.log(tabelka);
-    document.getElementById("content").innerHTML = '<center> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
+    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
     return false;
 }
 
@@ -85,6 +111,11 @@ function buttonClick(id) {
     copyText.select();
     copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
+    return false;
+}
+
+function buttonClick2(id) {
+    window.open("https://walentynkikatolik.github.io/open?id="+id, "_blank")
     return false;
 }
 </script>

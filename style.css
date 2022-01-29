@@ -233,9 +233,10 @@ h2.heart-text {
   #customers td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
+    width: 40%;
   }
-  
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+  #customers tr {background-color: #ffffff;}
   
   #customers tr:hover {background-color: #ddd;}
   
@@ -243,7 +244,7 @@ h2.heart-text {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #e8b7a6;
     color: white;
   }
 .link-button {
@@ -278,6 +279,23 @@ h2.heart-text {
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
     margin-top: 5px;
+}
+.link-button-3 {
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background-color: #e8b7a6;
+    outline: none;
+    border:0px solid;
+    resize: none;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 /* OTWIERANIE WALENTYNKI - ANIMACJA */
