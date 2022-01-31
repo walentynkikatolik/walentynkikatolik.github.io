@@ -14,6 +14,13 @@
         <img class="logo" src="logo.png">
         <img class="logo2" src="logo2.png" >
     </div>
+    <div class="loading-page" id="loading-page">
+        <div>
+            <center>
+            </br></br></br></br></br></br></br></br></br></br><img src='loading.svg'></img>
+            </center>
+        </div>
+    </div>
     <div class="content" id="content">
         <center>
         <h1>Stwórz swoją walentynkę!</h1>
@@ -74,6 +81,20 @@
 </html>
 
 <script>
+document.getElementById("content").style.display = "none";
+var countDownDate = new Date("Feb 11, 2022 15:00:00").getTime();
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+if (distance < 0) {
+    window.open("https://walentynkikatolik.github.io/closed","_self");
+} else {
+    document.getElementById("content").style.display = "block";
+    document.getElementById("loading-page").style.display = "none";
+}
 var jsondata = "";
 var cardcode = "";
 rangeChange();

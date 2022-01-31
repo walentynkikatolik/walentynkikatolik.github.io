@@ -10,15 +10,18 @@
 </head>
 
 <body>
-    <div id="header" class="header">
+    <div id="header" class="header2">
         <img class="logo" src="logo.png">
-        <img class="logo2" src="logo2.png" >
+        <img class="logo2" src="logo2.png">
+    </div>
+    <div class="countdown" id="countdown-header">
+        Na Wasze Walentynki czekamy jeszcze przez <b id="countdownTimer">0d 0h 0m 0s</b>! <b><u onClick="return cardCreator()" style="cursor: pointer;">WYŚLIJ!</u></b>
     </div>
     <div class="content" id="content">
         <center>
         <img src="advert.png" height="350px"></img>
         </br>
-        <button class="sendcard-button" onClick="return cardCreator();">Kliknij i wyślij walentynkę</button>
+        <button id="sendcard-button" class="sendcard-button" onClick="return cardCreator();">Kliknij i wyślij walentynkę</button>
         </br>
         <img src="advert2.png" width="100%"></img>
         </center>
@@ -31,7 +34,43 @@
 </html>
 
 <script>
+var countDownDate = new Date("Feb 11, 2022 15:00:00").getTime();
+document.getElementById("header").className = "header2";
+document.getElementById("countdown-header").style.display = "block";
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById("countdownTimer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdownTimer").innerHTML = "EXPIRED";
+    document.getElementById("countdown-header").style.display = "none";
+    document.getElementById("header").className = "header";
+}
+
 function cardCreator() {
     window.open("https://walentynkikatolik.github.io/create")
+    return false;
 }
+
+var x = setInterval(function() {
+  document.getElementById("header").className = "header2";
+  document.getElementById("countdown-header").style.display = "block";
+  var now = new Date().getTime();
+  var distance = countDownDate - now;
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("countdownTimer").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdownTimer").innerHTML = "EXPIRED";
+    document.getElementById("countdown-header").style.display = "none";
+    document.getElementById("header").className = "header";
+  }
+}, 1000);
 </script>

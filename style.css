@@ -2,6 +2,11 @@
     display: none;
 }
 
+.closed-page {
+    padding-top: 150px;
+    display: inherit;
+}
+
 ::-webkit-scrollbar{
     width: 7px;
     height: 7px;
@@ -33,6 +38,29 @@ body {
     -webkit-box-shadow:0px -23px 50px 30px #737373 ;
     -moz-box-shadow:0px -23px 50px 30px #737373 ;
     box-shadow:0px -23px 50px 30px #737373 ;
+}
+.header2 {
+    display: block;
+    position: fixed;
+    background-color: #e8b7a6;
+    width: 100%;
+    padding: 20px;
+    height: 100px;
+    -webkit-box-shadow:0px -23px 50px 30px #737373 ;
+    -moz-box-shadow:0px -23px 50px 30px #737373 ;
+    box-shadow:0px -23px 50px 30px #737373 ;
+}
+.countdown { 
+    display: block;
+    position: fixed;
+    background-color: #000000;
+    color: #ffffff;
+    width: 100%;
+    padding: 0;
+    height: 30px;
+    top: 110px;
+    font-size: 24px;
+    text-align: center;
 }
 .logo {
     height: 80px;
