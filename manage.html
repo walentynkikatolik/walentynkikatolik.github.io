@@ -35,6 +35,7 @@
 </html>
 
 <script>
+var username = "";
 function loginForm() {
     document.getElementById("login-info").innerHTML = "</br>Proszę czekać, trwa logowanie..."
     login = document.getElementById("login").value;
@@ -49,7 +50,8 @@ function loginForm() {
         loadCards();
     } else if (login == "j.salek" && password == "katolik2022") {
         username = "Jakub Sałek"
-        binid = "61f58dd3fb3ece3ad7ce0481";
+        //binid = "61f58dd3fb3ece3ad7ce0481";
+        binid = "61f188b9bd6e744997ec42f6";
         loadCards();
     } else if (login == "a.klajda" && password == "katolik2022") {
         username = "Aleksandra Klajda"
@@ -94,7 +96,11 @@ function createTable(jsondata) {
     while (cardsnumber > 0) {
         data = jsondata[counter];
         data = data.split(';');
-        tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
+        if (username == "Jakub Sałek") {
+            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
+        } else {
+            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+        }
         counter = counter + 4;
         cardsnumber = cardsnumber - 1;
     }
