@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto+Condensed&display=swap" rel="stylesheet">
-    <title>e-Walentynka | Zarządzanie</title>
+    <title>e-Walentynka | Wyślij walentynkę</title>
 </head>
 
 <body>
@@ -14,12 +14,188 @@
         <img class="logo" src="logo.png">
         <img class="logo2" src="logo2.png" >
     </div>
+    <div class="loading-page" id="loading-page">
+        <div>
+            <center>
+            </br></br></br></br></br></br></br></br></br></br><img src='loading.svg'></img>
+            </center>
+        </div>
+    </div>
     <div class="content" id="content">
         <center>
-            <h1>Trwa przerwa techniczna...</h1>
-            <h4>Spróbuj ponownie za kilka minut!</h4>
+        <h1>Stwórz swoją walentynkę!</h1>
+        <div class="heart-creator">
+            <div style="display: inline-block;">
+                <div class="heart">
+                    <div class="heart-content">
+                        <h2 id="heart-title" class="heart-title"> </h2>
+                        <h2 id="heart-text" class="heart-text"> </h2>
+                    </div>
+                </div>
+            </div>
+            <div style="display: inline-block;">
+                <div class="heart-options">
+                    <input type="text" id="heart-title-input" name="heart-title-input" class="options-input" onKeyUp="heartTitleEdit()"  maxlength="45" placeholder="Tytuł" autocomplete="off"></input>
+                    <input type="range" id="title-range" class="options-range" oninput="return rangeChange();">
+                    <textarea id="heart-text-input" name="heart-text-input" class="options-textarea" onKeyUp="heartTextEdit()" rows="6" maxrows="6" placeholder="Treść" maxlength="200"></textarea>
+                    <input type="range" id="text-range" class="options-range" oninput="return rangeChange();">
+                    <form onSubmit="return sendCard();">
+                        <input type="text" id="receiver" name="receiver" class="sending-input" placeholder="Imię i nazwisko odbiorcy" autocomplete="off" required></input>
+                        <select id="receiver-class" name="receiver-class" class="sending-input2" required>
+                            <option value="Klasa" selected hidden>Klasa</option>
+                            <option value="7 SP">7 SP</option>
+                            <option value="8 SP">8 SP</option>
+                            <option value="I LO">I LO</option>
+                            <option value="II LO">II LO</option>
+                            <option value="III LO">III LO</option>
+                        </select>
+                        </br>
+                        <input type="text" id="sender" name="sender" class="sending-input3" placeholder="Twoje imię (możesz zostawić to pole puste)"></input>
+                        </br>
+                        <input type="submit" class="sending-submit" value="Wyślij">
+                    </form>
+                </div>
+            </div>
+        </div>
+        </br>
+        <p>Prosimy o wpisanie imienia i nazwiska adresata zgodnie z podanymi na Teams</p>
+        <p>Walentynki będą rozsyłane poprzez platformę Microsoft Teams w dniach 11-13.02.2022</p>
+        </br>
+        <p style="color: #ebbbbb;">Projekt i wykonanie: Kuba Sałek</p>
+        <p style="color: #ebbbbb;">Opracowanie graficzne: Ola Klajda</p>
         </center>
     </div>
+    <div class="success-page" id="success-page">
+        <div>
+            <center>
+                <h3>Twoja walentynka została zapisana!</h3>
+                <h4>Kartki będą rozsyłane w dniach 11-13.02.2022</h4>
+                <button class="sending-submit" onClick="return showCard();">Podgląd walentynki</button>
+                </br></br>
+                <h4>Dziękujemy za udział w akcji! ❤️</h4>
+                <div class="signature"></div>
+            </center>
+        </div>
+    </div>
+
 </body>
 
+
+
 </html>
+
+<script>
+document.getElementById("content").style.display = "none";
+var countDownDate = new Date("Feb 11, 2022 15:00:00").getTime();
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+if (distance < 0) {
+    window.open("https://walentynkikatolik.github.io/closed","_self");
+} else {
+    document.getElementById("content").style.display = "block";
+    document.getElementById("loading-page").style.display = "none";
+}
+var jsondata = "";
+var cardcode = "";
+rangeChange();
+function heartTitleEdit() {
+    document.getElementById("heart-title").innerHTML = document.getElementById("heart-title-input").value;
+    return false;
+}
+function heartTextEdit() {
+    heartText = document.getElementById("heart-text-input").value;
+    heartText = heartText.replaceAll('\n', '</br>');
+    document.getElementById("heart-text").innerHTML = heartText;
+    return false;
+}
+function rangeChange() {
+    titlefontsize = parseInt(document.getElementById("title-range").value);
+    titlefontsize = titlefontsize / 100
+    titlefontsize = titlefontsize * 80
+    textfontsize = parseInt(document.getElementById("text-range").value);
+    textfontsize = textfontsize / 100
+    textfontsize = textfontsize * 40
+    document.getElementById("heart-title").style.fontSize = titlefontsize+"px";
+    document.getElementById("heart-text").style.fontSize = textfontsize+"px";
+    //console.log(titlefontsize+"px, "+textfontsize+"px");
+    return false;
+}
+
+function sendCard() {
+    title = document.getElementById("heart-title").innerHTML.replaceAll(';', '');
+    text = document.getElementById("heart-text").innerHTML.replaceAll(';', '');
+    titlesize = document.getElementById("heart-title").style.fontSize;
+    textsize = document.getElementById("heart-text").style.fontSize;
+    receiver = document.getElementById("receiver").value.replaceAll(';', '');
+    receiverclass = document.getElementById("receiver-class").value.replaceAll(';', '');
+    sender = document.getElementById("sender").value.replaceAll(';', '');
+    if (sender == "") {
+        sender = "Tajemniczy wielbiciel/wielbicielka 👤";
+    }
+    carddata = title+";"+text+";"+titlesize+";"+textsize+";"+receiver+";"+receiverclass+";"+sender;
+
+    document.getElementById("content").innerHTML = "</br></br><center><img src='loading.svg'></img><h1>Tworzenie walentynki...</h1></center>";
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        //console.log(req.responseText);
+        jsondata = req.responseText
+
+        return sendCard2(carddata);
+    }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/v3/b/61f188b9bd6e744997ec42f6/latest", true);
+    req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
+    req.setRequestHeader("X-Bin-Meta", "false");
+    req.send();
+
+    return false;
+
+}
+
+function sendCard2(carddata) {
+    jsondata = jsondata.substring(1);
+    cardcode = Math.random() * (9999999999999999 - 1111111111111111) + 1111111111111111;
+    //console.log("Kod walentynki: "+cardcode)
+    newjsondata = '{"'+cardcode+'": "'+cardcode+';'+carddata+'",'+jsondata;
+    //console.log(newjsondata);
+    newjsondata = newjsondata.replaceAll('&lt', '<');
+    newjsondata = newjsondata.replaceAll('&gt', '>');
+
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        return success();
+    }
+    };
+
+    req.open("PUT", "https://api.jsonbin.io/v3/b/61f188b9bd6e744997ec42f6", true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
+    req.send(newjsondata);
+
+    return false;
+}
+
+function success() {
+    document.getElementById("content").style.display = "none";
+    document.getElementById("success-page").style.display = "inherit";
+    document.getElementById("success-page").style.paddingTop = "150px";
+    return false;
+}
+
+function showCard() {
+    window.open("https://walentynkikatolik.github.io/open?id="+cardcode)
+    return false;
+}
+
+
+
+</script>
