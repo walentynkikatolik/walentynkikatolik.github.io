@@ -72,7 +72,6 @@ function loadCards() {
     let req = new XMLHttpRequest();
     req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
-        //console.log(req.responseText);
         jsondata = req.responseText
         createTable(jsondata);
     }
@@ -87,10 +86,9 @@ function loadCards() {
 
 function createTable(jsondata) {
     jsondata = jsondata.split('"');
-    console.log(jsondata);
     cardsnumber = jsondata.length - 1
     cardsnumber = cardsnumber / 4
-    console.log(cardsnumber);
+    cardsnumber2 = cardsnumber;
     counter = 3;
     tabelka = "";
     while (cardsnumber > 0) {
@@ -104,8 +102,7 @@ function createTable(jsondata) {
         counter = counter + 4;
         cardsnumber = cardsnumber - 1;
     }
-    console.log(tabelka);
-    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber+'</h4></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
+    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber2+'</h4></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
     return false;
 }
 
