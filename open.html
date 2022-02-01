@@ -65,7 +65,6 @@
 
     req.onreadystatechange = () => {
     if (req.readyState == XMLHttpRequest.DONE) {
-        //console.log(req.responseText);
         jsondata = req.responseText
         return makeCard(jsondata);
     }
@@ -99,7 +98,6 @@ function makeCard() {
     jsondata = JSON.parse(jsondata);
     jsondata = jsondata[cardcode];
     jsondata = jsondata.split(';');
-    console.log(jsondata);
     document.getElementById("loading-page").style.display = "none";
     document.getElementById("heart-title").innerHTML = jsondata[1];
     document.getElementById("heart-text").innerHTML = jsondata[2];

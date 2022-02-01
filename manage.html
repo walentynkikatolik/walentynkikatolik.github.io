@@ -105,7 +105,7 @@ function createTable(jsondata) {
         cardsnumber = cardsnumber - 1;
     }
     console.log(tabelka);
-    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
+    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber+'</h4></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
     return false;
 }
 
