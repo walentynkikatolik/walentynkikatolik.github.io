@@ -37,7 +37,7 @@
                 <div class="heart-options">
                     <input type="text" id="heart-title-input" name="heart-title-input" class="options-input" onKeyUp="heartTitleEdit()"  maxlength="45" placeholder="Tytuł" autocomplete="off"></input>
                     <input type="range" id="title-range" class="options-range" oninput="return rangeChange();">
-                    <textarea id="heart-text-input" name="heart-text-input" class="options-textarea" onKeyUp="heartTextEdit()" rows="6" maxrows="6" placeholder="Treść" maxlength="800"></textarea>
+                    <textarea id="heart-text-input" name="heart-text-input" class="options-textarea" onKeyUp="heartTextEdit()" rows="6" maxrows="6" placeholder="Treść" maxlength="400"></textarea>
                     <input type="range" id="text-range" class="options-range" oninput="return rangeChange();">
                     <form onSubmit="return sendCard();">
                         <input type="text" id="receiver" name="receiver" class="sending-input" placeholder="Imię i nazwisko odbiorcy" autocomplete="off" required></input>
