@@ -90,16 +90,18 @@ function createTable(jsondata) {
     cardsnumber2 = cardsnumber;
     counter = 3;
     tabelka = "";
+    liczbaporzadkowa = 1
     while (cardsnumber > 0) {
         data = jsondata[counter];
         data = data.split(';');
         if (username == "Jakub Sałek") {
-            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
+            tabelka = tabelka + '<tr> <td>'+liczbaporzadkowa+'. '+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
         } else {
-            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+            tabelka = tabelka + '<tr> <td>'+liczbaporzadkowa+'. '+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
         }
         counter = counter + 4;
         cardsnumber = cardsnumber - 1;
+        liczbaporzadkowa =+ 1
     }
     document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber2+'</h4></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
     return false;
