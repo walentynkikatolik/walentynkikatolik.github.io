@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>e-Walentynka | Zarządzanie</title>
+</head>
+
+<body>
+    <div id="header" class="header">
+        <img class="logo" src="logo.png">
+        <img class="logo2" src="logo2.png" >
+    </div>
+    <textarea id="clipboard"></textarea>
+    <div class="content" id="content">
+        <center>
+            <div style="width: 500px;">
+                <h1>Logowanie do Panelu Zarządzania</h1>
+                <form onsubmit="return loginForm()" id="loginform" name="loginform">
+                    <input type="text" id="login" name="login" class="options-input" placeholder="Login" autocomplete="off" required autofocus>
+                    </br></br>
+                    <input type="password" id="password" name="password" class="options-input" placeholder="Hasło" autocomplete="off" required>
+                    </br></br>
+                    <input type="submit" class="sending-submit" value="Zaloguj">
+                </form>
+                <h4 id="login-info"> </h4>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>
+
+<script>
+var username = "";
+function loginForm() {
+    document.getElementById("login-info").innerHTML = "</br>Proszę czekać, trwa logowanie..."
+    login = document.getElementById("login").value;
+    password = document.getElementById("password").value;
+    if (login == "b.niedzwiecki" && password == "p8jhvh8qq8") {
+        username = "Bartosz Niedźwiecki"
+        binid = "61f58da71960493ad184b0f6";
+        loadCards();
+    } else if (login == "k.paszkiewicz" && password == "5ebv62rk8x") {
+        username = "Kornelia Paszkiewicz"
+        binid = "61f58dc3fb3ece3ad7ce047a";
+        loadCards();
+    } else if (login == "j.salek" && password == "b756v9b38u") {
+        username = "Jakub Sałek"
+        binid = "61f9a10afb3ece3ad7cfbea3";
+        loadCards();
+    } else if (login == "a.klajda" && password == "uwf78g25qr") {
+        username = "Aleksandra Klajda"
+        binid = "61f58de6518e5f3b2ab2929e";
+        loadCards();
+    } else if (login == "z.reda" && password == "rca9gc8v5c") {
+        username = "Zuzanna Reda"
+        binid = "61f58df6518e5f3b2ab292aa";
+        loadCards();
+    } else {
+        window.alert("Hasło nieprawidłowe!");
+        window.open("https://walentynkikatolik.github.io/","_self");
+    }
+    return false;
+}
+
+function loadCards() {
+    let req = new XMLHttpRequest();
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        jsondata = req.responseText
+        createTable(jsondata);
+    }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/v3/b/"+binid+"/latest", true);
+    req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
+    req.setRequestHeader("X-Bin-Meta", "false");
+    req.send();
+
+}
+
+function createTable(jsondata) {
+    jsondata = jsondata.split('"');
+    cardsnumber = jsondata.length - 1
+    cardsnumber = cardsnumber / 4
+    cardsnumber2 = cardsnumber;
+    counter = 3;
+    tabelka = "";
+    while (cardsnumber > 0) {
+        data = jsondata[counter];
+        data = data.split(';');
+        if (username == "Jakub Sałek") {
+            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
+        } else {
+            tabelka = tabelka + '<tr> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+        }
+        counter = counter + 4;
+        cardsnumber = cardsnumber - 1;
+    }
+    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber2+'</h4></br></br> <table id="customers"> <tr> <th>Adresat</th> <th>Link do walentynki</th> </tr> '+tabelka+' </table> </center>'
+    return false;
+}
+
+function buttonClick(id) {
+    document.getElementById("card"+id).className = "link-button-2";
+    document.getElementById("card"+id).innerHTML = "Skopiowano!";
+    document.getElementById("clipboard").value = "📨 Ktoś wysłał do Ciebie Walentynkę! 📨\nWejdź tutaj, aby ją odczytać! ❤️\n➡️ https://walentynkikatolik.github.io/open?id="+id+"\n\nPozdrawiamy\nSamorząd Uczniowski"
+    var copyText = document.getElementById("clipboard");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    return false;
+}
+
+function buttonClick2(id) {
+    window.open("https://walentynkikatolik.github.io/open?id="+id, "_blank")
+    return false;
+}
+</script>
