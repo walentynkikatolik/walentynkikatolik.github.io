@@ -255,6 +255,7 @@ h2.heart-text {
 #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    width: 500px;
   }
   
   #customers td, #customers th {
