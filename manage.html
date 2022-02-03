@@ -91,19 +91,40 @@ function createTable(jsondata) {
     counter = 3;
     tabelka = "";
     liczbaporzadkowa = 1
+    cnc = [0, 0, 0, 0, 0, 0];
     while (cardsnumber > 0) {
         data = jsondata[counter];
         data = data.split(';');
+        switch (data[6]) {
+            case '7 SP':
+                cnc[0] += 1
+                break;
+            case '8 SP':
+                cnc[1] += 1
+                break;
+            case 'I LO':
+                cnc[2] += 1
+                break;
+            case 'II LO':
+                cnc[3] += 1
+                break;
+            case 'III LO':
+                cnc[4] += 1
+                break;
+            default:
+                cnc[5] += 1
+                break;
+        }
         if (username == "Jakub Sałek") {
-            tabelka = tabelka + '<tr> <td>'+liczbaporzadkowa+'. </td> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
+            tabelka = tabelka + '<tr> <td><center>'+liczbaporzadkowa+'.</center> </td> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button> <button class="link-button-3" onclick="return buttonClick2('+data[0]+')">Podgląd</button></td> </tr>'
         } else {
-            tabelka = tabelka + '<tr> <td>'+liczbaporzadkowa+'. </td> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
+            tabelka = tabelka + '<tr> <td><center>'+liczbaporzadkowa+'.</center> </td> <td>'+data[5]+' ('+data[6]+')</td> <td><button id="card'+data[0]+'" class="link-button" onClick="return buttonClick('+data[0]+')">Kopiuj</button></td> </tr>'
         }
         counter = counter + 4;
         cardsnumber = cardsnumber - 1;
         liczbaporzadkowa += 1
     }
-    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber2+'</h4></br></br> <table id="customers"> <tr> <th class="table-heading">L.p.</th> <th>Adresat</th> <th class="table-heading-2">Akcje</th> </tr> '+tabelka+' </table> </center>'
+    document.getElementById("content").innerHTML = '<center> <h1>Zalogowano jako: '+username+'</h1><h4>Liczba walentynek: '+cardsnumber2+'</br>7 SP: '+cnc[0]+', 8 SP: '+cnc[1]+', I LO: '+cnc[2]+', II LO: '+cnc[3]+', III LO: '+cnc[4]+', NK: '+cnc[5]+'</h4></br></br> <table id="customers"> <tr> <th class="table-heading">L.p.</th> <th>Adresat</th> <th class="table-heading-2">Akcje</th> </tr> '+tabelka+' </table> </center>'
     return false;
 }
 
