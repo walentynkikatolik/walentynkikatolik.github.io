@@ -252,6 +252,12 @@ h2.heart-text {
 
 
 /* FORMATOWANIE TABELI */
+.table-heading {
+    width: 50px;
+}
+.table-heading-2 {
+    width: 300px;
+}
 #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -261,7 +267,6 @@ h2.heart-text {
   #customers td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
-    width: 40%;
   }
 
   #customers tr {background-color: #ffffff;}
