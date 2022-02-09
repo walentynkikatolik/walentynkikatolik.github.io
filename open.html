@@ -9,10 +9,10 @@
     <title>e-Walentynka</title>
 </head>
 
-<body>
+<body id="body-style">
     <div id="header" class="header">
         <img class="logo" src="logo.png">
-        <img class="logo2" src="logo2.png" >
+        <img class="logo2" id="logo2" src="logo2.png" >
     </div>
     <center>
         <div id="animated-text" class="animated-text-hidden">
@@ -42,7 +42,7 @@
             </div>
             </br></br></br></br>
             <h4>Organizator
-            <div class="signature"></div></h4>
+            <div class="signature" id="signature"></div></h4>
         </center>
         <div class="credits">
             <p style="color: #ebbbbb;">Projekt i wykonanie: Kuba Sałek</p>
@@ -65,6 +65,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     var cardcode = urlParams.get('id');
     var instant = urlParams.get('instant');
+    var layout = urlParams.get('layout');
     
     let req = new XMLHttpRequest();
 
@@ -114,6 +115,14 @@ function makeCard() {
         showCard();
     } else {
         showText();
+    }
+    if (layout == "1") {
+        document.getElementById("header").style.backgroundColor = "#5a199b";
+        document.getElementById("body-style").style.backgroundColor = "#faf0ff";
+        document.getElementById("logo2").src = "logo3.png";
+        document.getElementById("signature").style.backgroundImage = 'url("signature2.png")';
+    } else {
+        console.log(" ");
     }
     return false;
 }
