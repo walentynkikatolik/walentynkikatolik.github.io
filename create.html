@@ -110,6 +110,8 @@ function heartTitleEdit() {
 function heartTextEdit() {
     heartText = document.getElementById("heart-text-input").value;
     heartText = heartText.replaceAll('\n', '</br>');
+    heartText = heartText.replaceAll(',', '');
+    heartText = heartText.replaceAll('"', '');
     document.getElementById("heart-text").innerHTML = heartText;
     return false;
 }
