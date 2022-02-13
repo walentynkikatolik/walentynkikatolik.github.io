@@ -41,6 +41,16 @@
                             </br>
                             Nadawca: Anonim
                         </h4>
+                        </br>
+                        <div id="rate-panel" class="rate-panel">
+                            <h4 style="margin-bottom: 5px;">Jak oceniasz tę akcję SU?</h4>
+                            <div onmouseover="rateStarHover(1)" onClick="rateStarClick(1)" id="star-1" class="star-rate-panel"></div>
+                            <div onmouseover="rateStarHover(2)" onClick="rateStarClick(2)" id="star-2" class="star-rate-panel"></div>
+                            <div onmouseover="rateStarHover(3)" onClick="rateStarClick(3)" id="star-3" class="star-rate-panel"></div>
+                            <div onmouseover="rateStarHover(4)" onClick="rateStarClick(4)" id="star-4" class="star-rate-panel"></div>
+                            <div onmouseover="rateStarHover(5)" onClick="rateStarClick(5)" id="star-5" class="star-rate-panel"></div>
+                            <p id="rate-title"> </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,6 +96,70 @@
     req.setRequestHeader("X-Master-Key", "$2b$10$8/p/2J/76YYKqYgYberDEO56NTs5a5k6wOlsRtqGlLJmvwdIAi75G");
     req.setRequestHeader("X-Bin-Meta", "false");
     req.send();
+
+
+function rateStarHover(rate) {
+    if (rate >= 1) {
+        document.getElementById("star-1").style.backgroundImage = 'url("star-checked.png")';
+    } else {
+        document.getElementById("star-1").style.backgroundImage = 'url("star.png")';
+    }
+    if (rate >= 2) {
+        document.getElementById("star-2").style.backgroundImage = 'url("star-checked.png")';
+    } else {
+        document.getElementById("star-2").style.backgroundImage = 'url("star.png")';
+    }
+    if (rate >= 3) {
+        document.getElementById("star-3").style.backgroundImage = 'url("star-checked.png")';
+    } else {
+        document.getElementById("star-3").style.backgroundImage = 'url("star.png")';
+    }
+    if (rate >= 4) {
+        document.getElementById("star-4").style.backgroundImage = 'url("star-checked.png")';
+    } else {
+        document.getElementById("star-4").style.backgroundImage = 'url("star.png")';
+    }
+    if (rate >= 5) {
+        document.getElementById("star-5").style.backgroundImage = 'url("star-checked.png")';
+    } else {
+        document.getElementById("star-5").style.backgroundImage = 'url("star.png")';
+    }
+    switch (rate) {
+        case 1:
+            rateTitle = "Bardzo źle"
+            break;
+        case 2:
+            rateTitle = "Źle"
+            break;
+        case 3:
+            rateTitle = "Umiarkowanie"
+            break;
+        case 4:
+            rateTitle = "Dobrze"
+            break;
+        case 5:
+            rateTitle = "Bardzo dobrze"
+            break;
+        default:
+            rateTitle = " ";
+    }
+    document.getElementById("rate-title").innerHTML = rateTitle;
+}
+
+function rateStarClick(rate) {
+    var url = "https://discord.com/api/webhooks/942418181845295114/iKeVKd8OhqAJvQmutZ8wEP-COtI2ogx0S__4GS8LTaNmMTMu0C0oQOZeZcQ2AE-AvWnV";
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+        console.log(xhr.status);
+        console.log(xhr.responseText);
+    }};
+    var data = '{"content": "Ktoś ocenia akcję SU na: '+rate+'"}';
+    xhr.send(data);
+    document.getElementById("rate-panel").innerHTML = "<h4>Dziękujemy za opinię! ❤️</h4>";
+}
 
 
 function showText() {

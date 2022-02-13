@@ -362,3 +362,18 @@ h2.heart-text {
     padding-top: 250px;
     display: none;
 }
+
+.rate-panel {
+    width: 100%;
+}
+
+.star-rate-panel {
+    width: 38px;
+    height: 38px;
+    background-image: url("star.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
